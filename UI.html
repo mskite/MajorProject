@@ -5,5 +5,16 @@
   </head>
   <body>
     <h1>Hello World</h1>
+    <label>Skin Tone: </label><input type="text" id="skinTone">
+    <button id="button">Enter</button>
+
+  <script>
+    document.getElementById("button").addEventListener("click", doStuff);
+    function doStuff(){
+      var skin = document.getElementById("skinTone").value
+      google.script.run.userClicked(skin);
+    }
+  </script>
+
   </body>
 </html>
