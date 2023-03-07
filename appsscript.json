@@ -1,10 +1,20 @@
 {
   "timeZone": "Australia/Sydney",
-  "dependencies": {},
+  "dependencies": {
+  },
+  "webapp": {
+    "access": "MYSELF",
+    "executeAs": "USER_DEPLOYING"
+  },
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8",
-  "webapp": {
-    "executeAs": "USER_DEPLOYING",
-    "access": "MYSELF"
+  "sheets": {
+    "macros": [{
+      "menuName": "Choose Hair Colour",
+      "functionName": "ChooseHairColour"
+    }, {
+      "menuName": "Choose Skin Tone",
+      "functionName": "ChooseSkinTone"
+    }]
   }
 }
