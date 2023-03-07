@@ -4,16 +4,27 @@
     <base target="_top">
   </head>
   <body>
-    <h1>Hello World</h1>
+    <h1>Dress Recommendations</h1>
     <label>Skin Tone: </label><input type="text" id="skinTone">
     <button id="button">Enter</button>
+    <label>Hair Colour: </label><input type="text" id="hairTone"> 
+    
 
   <script>
+
     document.getElementById("button").addEventListener("click", doStuff);
     function doStuff(){
       var skin = document.getElementById("skinTone").value;
-      google.script.run.userClicked(skin);
+      var hair = document.getElementById("hairTone").value;
+      
+      google.script.run.userClicked(skin, hair);
     }
+
+    // document.getElementById("button2").addEventListener("click", doStuffAgain);
+    // function doStuffAgain(){
+    //   var hair = document.getElementById("hairTone").value;
+    //   google.script.run.userClickedAgain(hair);
+    // }
   </script>
 
   </body>
