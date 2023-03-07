@@ -8,17 +8,28 @@
     <label>Skin Tone: </label><input type="text" id="skinTone">
     <button id="button">Enter</button>
     <label>Hair Colour: </label><input type="text" id="hairTone"> 
-    
+    <p id ="results"></p>
 
   <script>
 
+    
     document.getElementById("button").addEventListener("click", doStuff);
+     function onSuccess(results) {
+      var div = document.getElementById("results");
+      div.innerHTML = results;
+    }
     function doStuff(){
       var skin = document.getElementById("skinTone").value;
       var hair = document.getElementById("hairTone").value;
       
-      google.script.run.userClicked(skin, hair);
+      google.script.run.withSuccessHandler(onSuccess)
+      .userClicked(skin, hair);
+      //document.getElementById("results").innerHTML = result;
     }
+
+   
+    
+    
 
     // document.getElementById("button2").addEventListener("click", doStuffAgain);
     // function doStuffAgain(){
