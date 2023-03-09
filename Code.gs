@@ -7,9 +7,9 @@ function userClicked(skinColour) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   var ws = ss.getSheetByName("Test");
   var range = ws.getRange("I2:I6").getValues();
-  var colours = range;
+  var coloursOne = range;
   //Logger.log("A user entered their skin tone as " + skinColour + " and their hair colour as " + hairColour);
-  return colours;
+  return coloursOne;
 }
 
 function userClickedAgain(hairColour) {
@@ -30,4 +30,26 @@ function getSS() {
   var values = range.getValues();
   console.log(values);
 };
+
+// function ChooseHairColour() {
+//   var spreadsheet = SpreadsheetApp.getActive();
+//   spreadsheet.getRange('D2').activate();
+//   spreadsheet.getCurrentCell().setFormula('=filter(A2:B93,B2:B93="black")');
+//   spreadsheet.getRange('D3').activate();
+// };
+
+// function ChooseSkinTone() {
+//   var spreadsheet = SpreadsheetApp.getActive();
+//   spreadsheet.getRange('D2').activate();
+//   spreadsheet.getCurrentCell().setFormula('=filter(A2:B97,B2:B97="warm dark")');
+//   spreadsheet.getRange('D3').activate();
+// };
+
+
+
+
+
+
+
+
 
