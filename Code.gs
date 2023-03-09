@@ -17,7 +17,7 @@ function userClickedAgain(hairColour) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   var ws = ss.getSheetByName("Test");
   
-  var range = ws.getRange("G2").setFormula('=filter(A2:B93,B2:B93="'+ hairColour +'")').activate();
+  var range = ws.getRange("G2").setFormula('=filter(A2:B92,B2:B92="'+ hairColour +'")').activate();
   range = ws.getRange("G2:G15").getValues();
   var coloursTwo = range;
   return coloursTwo;
