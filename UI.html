@@ -1,38 +1,10 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <base target="_top">
-  </head> -->
+  </head>
   
   <body>
-    <h1>Test Website</h1>
-    <p id="printsArray"></p>
-    <button onClick="findCommon()">Find Common Elements</button>
-    <p id="foundCommon" ></p>
-    
-    <script>
-      var up = document.getElementById('printsArray');
-      var down = document.getElementById('foundCommon');
-      var arr1 = ["Pastels", "Grey", "Brown", "Green","Blue"];
-      var arr2 = ["Blue", "Grey", "Red", "Pastels", "Green", "Neutrals"];
-      var arr = [arr1, arr2];
-      up.innerHTML =
-        "Click on button to get the common elements from these"+
-        " array<br>Array1 - [" + arr1 + "]<br>Array2 -"+
-        " [" + arr2 + "]";
-
-      function findCommon() {
-        arr3 = arr.slice();
-        down.innerHTML = arr3.shift().filter(function(v) {
-          return arr3.every(function(a) {
-            return a.indexOf(v) !== -1;
-          });
-        });
-      }
-    </script>
-  </body>
-  
-  <!-- <body> 
     <h1 style="color:SlateBlue;">Dress Recommendations</h1>
     <label>Skin Tone: </label><input type="text" id="skinTone">
     <button id="button" style="background-color:rgb(205, 184, 255);">Enter</button> 
@@ -43,50 +15,50 @@
     <p id ="results">Your skin results will appear here!</p>
     <p id ="resultsTwo">Your hair results will appear here!</p>
     <p></p>
-
-  <script>
-
-    document.getElementById("button").addEventListener("click", doStuff);
-    function onSuccess(results) {
-      var div = document.getElementById("results");
-      div.innerHTML = results;
-    }
-
-    document.getElementById("buttonTwo").addEventListener("click", doStuffTwo);
-    function onSuccessAgain(resultsTwo) {
-      var divTwo = document.getElementById("resultsTwo");
-      divTwo.innerHTML = resultsTwo;
-    }
+    <p id="printsArray"></p>
+    <button onClick="findCommon()" style="background-color:rgb(205, 184, 255);">Find Common Elements</button>
+    <p id="foundCommon"></p>
     
-    function doStuff(){
-      var skin = document.getElementById("skinTone").value;
+    <script>
+  
+      var down = document.getElementById("foundCommon");
+      var arr1 = ["Pastels", "Grey", "Brown", "Green","Blue"];
+      var arr2 = ["Blue", "Grey", "Red", "Pastels", "Green", "Neutrals"];
+      var arr = [arr1, arr2];
+
+      function findCommon() {
+        arr3 = arr.slice();
+        down.innerHTML = arr3.shift().filter(function(v) {
+          return arr3.every(function(a) {
+            return a.indexOf(v) !== -1;
+          });
+        });
+      }
+
+      document.getElementById("button").addEventListener("click", doStuff);
+      function onSuccess(results) {
+        var div = document.getElementById("results");
+        div.innerHTML = results;
+      }
+
+      document.getElementById("buttonTwo").addEventListener("click", doStuffTwo);
+      function onSuccessAgain(resultsTwo) {
+        var divTwo = document.getElementById("resultsTwo");
+        divTwo.innerHTML = resultsTwo;
+      }
       
-      google.script.run.withSuccessHandler(onSuccess)
-      .userClicked(skin);
-      //document.getElementById("results").innerHTML = result;
-    }
+      function doStuff(){
+        var skin = document.getElementById("skinTone").value;
+        google.script.run.withSuccessHandler(onSuccess)
+        .userClicked(skin);
+      }
 
-    function doStuffTwo(){
-      var hair = document.getElementById("hairTone").value;
-      
-      google.script.run.withSuccessHandler(onSuccessAgain)
-      .userClickedAgain(hair);
-      //document.getElementById("results").innerHTML = result;
-    }
+      function doStuffTwo(){
+        var hair = document.getElementById("hairTone").value;
+        google.script.run.withSuccessHandler(onSuccessAgain)
+        .userClickedAgain(hair);
+      }
 
-    // document.getElementById("buttonThree").addEventListener("click", findCommon);
-    // function findCommon(coloursOne, coloursTwo) {
-    //   for(let i = 0; i < coloursOne.length; i++) {
-    //     for(let j = 0; j < coloursTwo.length; j++) {
-    //       if(coloursOne[i] === coloursTwo[j]) {
-    //         return true;
-    //       }
-    //     }
-    //   }
-    //   return false;
-    // }
-
-  </script>
-
+    </script>
   </body>
-</html> -->
+</html> 
