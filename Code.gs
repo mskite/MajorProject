@@ -3,30 +3,30 @@ function doGet(e) {
   return HtmlService.createHtmlOutputFromFile("UI");
 }
 
-function userClicked(skinColour, hairColour) {
-  //var url = "https://docs.google.com/spreadsheets/d/1kpZ4wgx3qg4xLiPPmegWcU_ObCEsYzkorzk4KG6IVS8/edit#gid=794297814";
-  //var ss = SpreadSheetApp.openByUrl(url);
+function userClicked(skinColour) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   var ws = ss.getSheetByName("Test");
-  var range = ws.getRange("G2:G11").getValues();
-  Logger.log = (range[1][0]);
-  //ws.appendRow([skinColour]);
+  var range = ws.getRange("I2:I6").getValues();
+  var colours = range;
   //Logger.log("A user entered their skin tone as " + skinColour + " and their hair colour as " + hairColour);
-  return range;
+  return colours;
 }
 
-// function userClickedAgain(hairColour) {
-//   const ss = SpreadsheetApp.getActiveSpreadsheet();
-//   var ws = ss.getSheetByName("Test2");
-//   Logger.log("A user entered their hair colour as " + hairColour)
-// }
+function userClickedAgain(hairColour) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ws = ss.getSheetByName("Test");
+  var range = ws.getRange("G2:G7").getValues();
+  var coloursTwo = range;
+  //Logger.log("A user entered their skin tone as " + skinColour + " and their hair colour as " + hairColour);
+  return coloursTwo;
+}
 
 function getSS() {
   //connect to the spreadsheet and range to get the data
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName("Test2");
   //get the info from these cells
-  var range = sheet.getRange("A1:B2");
+  var range = sheet.getRange("A1:D97");
   var values = range.getValues();
   console.log(values);
 };

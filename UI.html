@@ -3,39 +3,47 @@
   <head>
     <base target="_top">
   </head>
-  <body>
-    <h1>Dress Recommendations</h1>
+  <body> 
+    <h1 style="color:SlateBlue;">Dress Recommendations</h1>
     <label>Skin Tone: </label><input type="text" id="skinTone">
-    <button id="button">Enter</button>
-    <label>Hair Colour: </label><input type="text" id="hairTone"> 
-    <p id ="results"></p>
+    <button id="button" style="background-color:rgb(205, 184, 255);">Enter</button> 
+    <p></p>
+    <label>Hair Colour: </label><input type="text" id="hairTone">
+    <button id="buttonTwo" style="background-color:rgb(205, 184, 255);">Enter</button> 
+    <p></p>
+    <p id ="results">Your skin results will appear here!</p>
+    <p id ="resultsTwo">Your hair results will appear here!</p>
 
   <script>
 
-    
     document.getElementById("button").addEventListener("click", doStuff);
-     function onSuccess(results) {
+    function onSuccess(results) {
       var div = document.getElementById("results");
       div.innerHTML = results;
     }
+
+    document.getElementById("buttonTwo").addEventListener("click", doStuffTwo);
+    function onSuccessAgain(resultsTwo) {
+      var divTwo = document.getElementById("resultsTwo");
+      divTwo.innerHTML = resultsTwo;
+    }
+    
     function doStuff(){
       var skin = document.getElementById("skinTone").value;
-      var hair = document.getElementById("hairTone").value;
       
       google.script.run.withSuccessHandler(onSuccess)
-      .userClicked(skin, hair);
+      .userClicked(skin);
       //document.getElementById("results").innerHTML = result;
     }
 
-   
-    
-    
+    function doStuffTwo(){
+      var hair = document.getElementById("hairTone").value;
+      
+      google.script.run.withSuccessHandler(onSuccess)
+      .userClickedAgain(hair);
+      //document.getElementById("results").innerHTML = result;
+    }
 
-    // document.getElementById("button2").addEventListener("click", doStuffAgain);
-    // function doStuffAgain(){
-    //   var hair = document.getElementById("hairTone").value;
-    //   google.script.run.userClickedAgain(hair);
-    // }
   </script>
 
   </body>
