@@ -11,7 +11,3 @@
 //   spreadsheet.getCurrentCell().setFormula('=filter(A2:B97,B2:B97="warm dark")');
 //   spreadsheet.getRange('D3').activate();
 // };
-
-// function findCommon() {
-  
-// }

@@ -15,21 +15,19 @@
     <p id ="results">Your skin results will appear here!</p>
     <p id ="resultsTwo">Your hair results will appear here!</p>
     <p></p>
-    <p id="printsArray"></p>
-    <button onClick="findCommon()" style="background-color:rgb(205, 184, 255);">Find Common Elements</button>
+    <button onClick="findCommon()" style="background-color:rgb(205, 184, 255);">Find Common Colours</button>
     <p id="foundCommon"></p>
     
     <script>
   
       var down = document.getElementById("foundCommon");
-      var arr1 = ["Pastels", "Grey", "Brown", "Green","Blue"];
-      var arr2 = ["Blue", "Grey", "Red", "Pastels", "Green", "Neutrals"];
-      var arr = [arr1, arr2];
-
+      var arr1 = [" green", " blue", " red"];
+      var arr2 = [" blue", " red", " purple"];
+      var finalArr = [arr1, arr2];
       function findCommon() {
-        arr3 = arr.slice();
-        down.innerHTML = arr3.shift().filter(function(v) {
-          return arr3.every(function(a) {
+        arr = finalArr.slice();
+        down.innerHTML = arr.shift().filter(function(v) {
+          return arr.every(function(a) {
             return a.indexOf(v) !== -1;
           });
         });
