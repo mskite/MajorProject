@@ -11,3 +11,5 @@
 //   spreadsheet.getCurrentCell().setFormula('=filter(A2:B97,B2:B97="warm dark")');
 //   spreadsheet.getRange('D3').activate();
 // };
+
+//macros from the spreadsheet, edited versions incorporated in Code.gs

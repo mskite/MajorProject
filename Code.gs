@@ -1,15 +1,17 @@
 function doGet(e) {
   Logger.log(e.parameter);
-  return HtmlService.createHtmlOutputFromFile("UI");
+  return HtmlService.createHtmlOutputFromFile("UI"); 
+  //creates the HTML file's output
 }
 
 function userClicked(skinColour) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  var ws = ss.getSheetByName("Test");
+  var ws = ss.getSheetByName("Test"); //works with the "Test" worksheet in "Major's Back End"
 
-  var range = ws.getRange("I2").setFormula('=filter(D2:E97,E2:E97="' + skinColour + '")').activate();
+  var range = ws.getRange("I2").setFormula('=filter(D2:E97,E2:E97="' + skinColour + '")').activate(); 
+  //edits filter in the active worksheet to sort for matches based on input 
   range = ws.getRange("I2:I15").getValues();
-  var coloursOne = range;
+  var coloursOne = range; //links the results of the filtr to the coloursOne variable
   return coloursOne;
 }
 
@@ -18,8 +20,9 @@ function userClickedAgain(hairColour) {
   var ws = ss.getSheetByName("Test");
   
   var range = ws.getRange("G2").setFormula('=filter(A2:B92,B2:B92="'+ hairColour +'")').activate();
+  //edits filter in the active worksheet to sort for matches based on input
   range = ws.getRange("G2:G15").getValues();
-  var coloursTwo = range;
+  var coloursTwo = range; //links the results of the filtr to the coloursTwo variable
   return coloursTwo;
 }
 
