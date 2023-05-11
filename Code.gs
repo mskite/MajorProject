@@ -26,12 +26,6 @@ function userClickedAgain(hairColour) {
   return coloursTwo;
 }
 
-// function findCommonElements(skinSliced, hairSliced) {
-//   const finalResults = hairSliced.concat(skinSliced);
-//   console.log(finalResults);
-//   return finalResults;
-// }
-
 function getSS() {
   //connect to the spreadsheet and range to get the data
   const ss = SpreadsheetApp.getActiveSpreadsheet();
