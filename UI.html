@@ -16,53 +16,52 @@
     <p></p>
     <p id ="results">Your skin results will appear here!</p>
     <p id ="resultsTwo">Your hair results will appear here!</p>
-    <!-- prints basic results based on spreadsheet data -->
+    <!-- prints individual results based on spreadsheet data -->
     <p></p>
     <button onClick="findCommon()" style="background-color:rgb(205, 184, 255);">Find Common Colours</button>
     <p id="foundCommon"></p>
     <!-- prints colours present in both results above -->
     
     <script>
-  
+      var hairResults = [""];
+      var skinResults = [""];
       var down = document.getElementById("foundCommon");
-      var arr1 = ["Blue", "Grey", "Green", "White", "Neutrals", "Pink", "Yellow", "Purple", "Pastels"];
-      var arr2 = ["Pastels", "Grey", "Brown", "Green", "Blue"];
-      // hard coded to find the common colours between set inputs, will fix
-      var finalArr = [arr1, arr2];
-      function findCommon() {
-        arr = finalArr.slice();
-        down.innerHTML = arr.shift().filter(function(v) {
-          return arr.every(function(a) {
-            return a.indexOf(v) !== -1;
-          });
-        });
-      }
 
-      document.getElementById("button").addEventListener("click", doStuff);
+      document.getElementById("button").addEventListener("click", passSkin);
+      
       function onSuccess(results) {
         var div = document.getElementById("results");
         div.innerHTML = results;
         //makes the first enter button print the results 
+        skinResults = results.slice();
       }
 
-      document.getElementById("buttonTwo").addEventListener("click", doStuffTwo);
+      document.getElementById("buttonTwo").addEventListener("click", passHair);
+      
       function onSuccessAgain(resultsTwo) {
         var divTwo = document.getElementById("resultsTwo");
         divTwo.innerHTML = resultsTwo;
         //makes the second enter button print the results 
+        hairResults = resultsTwo.slice();
       }
       
-      function doStuff(){
+      function passSkin(){
         var skin = document.getElementById("skinTone").value;
         google.script.run.withSuccessHandler(onSuccess)
         .userClicked(skin); //calls the userClicked function and passes it skin
       }
 
-      function doStuffTwo(){
+      function passHair(){
         var hair = document.getElementById("hairTone").value;
         google.script.run.withSuccessHandler(onSuccessAgain)
         .userClickedAgain(hair); //calls the userClickedAgain function and passes it hair
       }
+
+      function findCommon() {
+        const finalResults = hairResults.concat(skinResults);
+        console.log(finalResults);
+      }
+
 
     </script>
   </body>

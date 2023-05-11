@@ -11,7 +11,7 @@ function userClicked(skinColour) {
   var range = ws.getRange("I2").setFormula('=filter(D2:E97,E2:E97="' + skinColour + '")').activate(); 
   //edits filter in the active worksheet to sort for matches based on input 
   range = ws.getRange("I2:I15").getValues();
-  var coloursOne = range; //links the results of the filtr to the coloursOne variable
+  var coloursOne = range; //links the results of the filter to the coloursOne variable
   return coloursOne;
 }
 
@@ -22,9 +22,15 @@ function userClickedAgain(hairColour) {
   var range = ws.getRange("G2").setFormula('=filter(A2:B92,B2:B92="'+ hairColour +'")').activate();
   //edits filter in the active worksheet to sort for matches based on input
   range = ws.getRange("G2:G15").getValues();
-  var coloursTwo = range; //links the results of the filtr to the coloursTwo variable
+  var coloursTwo = range; //links the results of the filter to the coloursTwo variable
   return coloursTwo;
 }
+
+// function findCommonElements(skinSliced, hairSliced) {
+//   const finalResults = hairSliced.concat(skinSliced);
+//   console.log(finalResults);
+//   return finalResults;
+// }
 
 function getSS() {
   //connect to the spreadsheet and range to get the data
