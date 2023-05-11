@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <base target="_top">
@@ -6,12 +6,15 @@
   <body>
     <script>
       
-      var array1 = ["hi", "hello", "bye", "hello"]
-      var array2 = ["yellow", "red", "hi"]
+      var array1 = ["red", "black", "blue", "green"]
+      var array2 = ["purple", "blue", "yellow", "red"]
+      // results = [""]
+      // next = 0
       const array3 = array1.concat(array2);
 
       const findDuplicates = (array) => {
         let sorted_arr = array.slice().sort(); 
+        console.log(sorted_arr);
         let common = [];
         for (let i = 0; i < sorted_arr.length - 1; i++) {
           if (sorted_arr[i + 1] == sorted_arr[i]) {
@@ -20,9 +23,18 @@
         }
         return common;
       }
-      console.log(`The duplicates in "${array3}" are "${findDuplicates(array3)}"`);
+      console.log(`The duplicates are "${findDuplicates(array3)}"`);
+
+      // for (let i = 0; i < array1.length; i++) {
+      //   for (let j = 0; j < array2.length; j++) {
+      //     if (array1[i] == array2[j]) {
+      //       results[next] = array1[i];
+      //     }
+      //   }
+      // }
+      // console.log(results)
 
     </script>
   </body>
 </html>
- -->
+

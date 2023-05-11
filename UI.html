@@ -14,50 +14,65 @@
     <button id="enterTwo" style="background-color:rgb(205, 184, 255);">Enter</button> 
     <!-- //creates button to enter hair colour -->
     <p></p>
-    <p id ="results">Your skin results will appear here!</p>
-    <p id ="resultsTwo">Your hair results will appear here!</p>
+    <p id ="results1">Your skin results will appear here!</p>
+    <p id ="results2">Your hair results will appear here!</p>
     <!-- prints individual results based on spreadsheet data -->
     <p></p>
     <button id="findCommonColours" style="background-color:rgb(205, 184, 255);">Find Common Colours</button>
+    <p>Your recommended colours are: </p>
     <p id="foundCommon"></p>
     <!-- prints colours present in both results above -->
     
     <script>
       var hairResults = [""];
       var skinResults = [""];
+      // next = 0
+      // var commons = [""]
 
       document.getElementById("enter").addEventListener("click", passSkin);
       document.getElementById("enterTwo").addEventListener("click", passHair);
       document.getElementById("findCommonColours").addEventListener("click", findCommon);
       
       function onSuccess(results) {
-        var div = document.getElementById("results");
+        var div = document.getElementById("results1");
         div.innerHTML = results;
         //makes the first enter button print the results 
         skinResults = results;
       }
       
       function onSuccessAgain(resultsTwo) {
-        var divTwo = document.getElementById("resultsTwo");
+        var divTwo = document.getElementById("results2");
         divTwo.innerHTML = resultsTwo;
         //makes the second enter button print the results 
         hairResults = resultsTwo;
       }
 
+      function onSuccessThird(sameColours) {
+        var divThree = document.getElementById("foundCommon");
+        divThree.innerHTML = sameColours;
+        //makes the Find Common Colours button print the results 
+        commons = sameColours;
+      }
+
       function findCommon(){
+        google.script.run.withSuccessHandler(onSuccessThird)
         //https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
         const findDuplicates = (array) => {
           let sorted_arr = array.sort();
+          var fixedArr = [];
+          for (let i = 0; i < sorted_arr.length; i++) {
+            fixedArr.push(sorted_arr[i][0]);
+          }
           let commons = [];
-          for (let i = 0; i < sorted_arr.length - 1; i++) {
-            if (sorted_arr[i + 1] == sorted_arr[i]) {
-              commons.push(sorted_arr[i]);
+          for (let j = 0; j < fixedArr.length - 1; j++) {
+            if (fixedArr[j + 1] == fixedArr[j]) {
+              commons.push(fixedArr[j]);
             }
           }
           return commons;
         }
         const finalResults = hairResults.concat(skinResults);
-        console.log(`The common colours are: ${findDuplicates(finalResults)}`);
+        console.log(`The common colours are: "${findDuplicates(finalResults)}"`);
       }
       
       function passSkin(){
