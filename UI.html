@@ -72,6 +72,8 @@
           return commons;
         }
         const finalResults = hairResults.concat(skinResults);
+        var divThree = document.getElementById("foundCommon");
+        divThree.innerHTML = `The common colours are: "${findDuplicates(finalResults)}"`;
         console.log(`The common colours are: "${findDuplicates(finalResults)}"`);
       }
       

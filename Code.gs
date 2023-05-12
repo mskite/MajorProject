@@ -6,7 +6,7 @@ function doGet(e) {
 
 function userClicked(skinColour) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  var ws = ss.getSheetByName("Test"); //works with the "Test" worksheet in "Major's Back End"
+  var ws = ss.getSheetByName("Data"); //works with the "Test" worksheet in "Major's Back End"
 
   var range = ws.getRange("I2").setFormula('=filter(D2:E97,E2:E97="' + skinColour + '")').activate(); 
   //edits filter in the active worksheet to sort for matches based on input 
@@ -17,7 +17,7 @@ function userClicked(skinColour) {
 
 function userClickedAgain(hairColour) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  var ws = ss.getSheetByName("Test");
+  var ws = ss.getSheetByName("Data");
   
   var range = ws.getRange("G2").setFormula('=filter(A2:B92,B2:B92="'+ hairColour +'")').activate();
   //edits filter in the active worksheet to sort for matches based on input
