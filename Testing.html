@@ -4,37 +4,18 @@
     <base target="_top">
   </head>
   <body>
-    <script>
-      
-      var array1 = ["red", "black", "blue", "green"]
-      var array2 = ["purple", "blue", "yellow", "red"]
-      // results = [""]
-      // next = 0
-      const array3 = array1.concat(array2);
-
-      const findDuplicates = (array) => {
-        let sorted_arr = array.slice().sort(); 
-        console.log(sorted_arr);
-        let common = [];
-        for (let i = 0; i < sorted_arr.length - 1; i++) {
-          if (sorted_arr[i + 1] == sorted_arr[i]) {
-          common.push(sorted_arr[i]);
-          } 
-        }
-        return common;
-      }
-      console.log(`The duplicates are "${findDuplicates(array3)}"`);
-
-      // for (let i = 0; i < array1.length; i++) {
-      //   for (let j = 0; j < array2.length; j++) {
-      //     if (array1[i] == array2[j]) {
-      //       results[next] = array1[i];
-      //     }
-      //   }
-      // }
-      // console.log(results)
-
-    </script>
+    <button onclick="displayImage('timetable');">Show Image</button>
+    <!-- <img src="https://drive.google.com/uc?export=view&id=1IVZLpd4FQLCbGI7sTA9tNnszo6o22jzn" width="200px" height="auto" style="border:1px solid blue:" alt="testImage" > -->
   </body>
 </html>
 
+<script>
+  function displayImage(src) {
+      var img = document.createElement("img");
+      img.src = "https://drive.google.com/uc?export=view&id=1IVZLpd4FQLCbGI7sTA9tNnszo6o22jzn";
+      img.height = 200;
+      document.body.appendChild(img);
+    }
+  </script>
+
+<!-- https://www.youtube.com/watch?v=T16e52fy8nw&ab_channel=QuickProgrammingTips -->

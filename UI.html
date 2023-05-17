@@ -6,13 +6,48 @@
   
   <body>
     <h1 style="color:SlateBlue;">Dress Recommendations</h1> <!-- creates title -->
-    <label>Skin Tone: </label><input type="text" id="skinTone">
+    <label for="skinColours">Skin Tone: </label>
+    <select id="skinTone" name="skin"> <!-- creates drop-down menu -->
+      <option value="Warm Very Fair">Warm Very Fair</option>
+      <option value="Warm Fair">Warm Fair</option>
+      <option value="Warm Medium">Warm Medium</option>
+      <option value="Warm Dark">Warm Dark</option>
+      <option value="Warm Deep">Warm Deep</option>
+      <option value="Cool Very Fair">Cool Very Fair</option>
+      <option value="Cool Fair">Cool Fair</option>
+      <option value="Cool Medium">Cool Medium</option>
+      <option value="Cool Dark">Cool Dark</option>
+      <option value="Cool Deep">Cool Deep</option>
+      <option value="Neutral Very Fair">Neutral Very Fair</option>
+      <option value="Neutral Fair">Neutral Fair</option>
+      <option value="Neutral Medium">Neutral Medium</option>
+      <option value="Neutral Dark">Neutral Dark</option>
+      <option value="Neutral Deep">Neutral Deep</option>
+      <option value="Olive">Olive</option>
+    </select>
     <button id="enter" style="background-color:rgb(205, 184, 255);">Enter</button> 
-    <!-- //creates button to enter skin tone -->
+    <!-- creates button to enter skin tone -->
     <p></p>
-    <label>Hair Colour: </label><input type="text" id="hairTone">
+    <label for="hairColours">Hair Colour: </label>
+    <select id="hairTone" name="hair"> <!-- creates drop-down menu -->
+      <option value="Platinum Blonde">Platinum Blonde</option>
+      <option value="Warm Blonde">Warm Blonde</option>
+      <option value="Ash Blonde">Ash Blonde</option>
+      <option value="Dirty Blonde">Dirty Blonde</option>
+      <option value="Strawberry Blonde">Strawberry Blonde</option>
+      <option value="Copper">Copper</option>
+      <option value="Red Brown">Red Brown</option>
+      <option value="Honey Blonde">Honey Blonde</option>
+      <option value="Light Brown">Light Brown</option>
+      <option value="Dark Brown">Dark Brown</option>
+      <option value="Warm Brown">Warm Brown</option>
+      <option value="Cool Brown">Cool Brown</option>
+      <option value="Black">Black</option>
+      <option value="Grey">Grey</option>
+    </select>
+    
     <button id="enterTwo" style="background-color:rgb(205, 184, 255);">Enter</button> 
-    <!-- //creates button to enter hair colour -->
+    <!-- creates button to enter hair colour -->
     <p></p>
     <p id ="results1">Your skin results will appear here!</p>
     <p id ="results2">Your hair results will appear here!</p>
@@ -22,12 +57,49 @@
     <p>Your recommended colours are: </p>
     <p id="foundCommon"></p>
     <!-- prints colours present in both results above -->
+    <p></p>
     
+    <h1 style="color:SlateBlue;">Colour Palettes</h2>
+    <p>Click on these buttons to show their colour palette!</p>
+    
+    <button onclick="displayAqua('img');">Aqua</button>
+    <button onclick="displayBlack('img');">Black</button>
+    <button onclick="displayBlue('img');">Blue</button>
+    <p></p>
+    
+    <button onclick="displayBrown('img');">Brown</button>
+    <button onclick="displayDarkBlue('img');">Dark Blue</button>
+    <button onclick="displayDarkGreen('img');">Dark Green</button>
+    <p></p>
+    
+    <button onclick="displayDarkPurple('img');" style="background-color:rgb(205, 184, 255);">Dark Purple</button>
+    <button onclick="displayDarkRed('img');" style="background-color:rgb(205, 184, 255);">Dark Red</button>
+    <button onclick="displayDarkYellow('img');" style="background-color:rgb(205, 184, 255);">Dark Yellow</button>
+    <p></p>
+    
+    <button onclick="displayGreen('img');" style="background-color:rgb(205, 184, 255);">Green</button>
+    <button onclick="displayGrey('img');" style="background-color:rgb(205, 184, 255);">Grey</button>
+    <button onclick="displayNeutrals('img');" style="background-color:rgb(205, 184, 255);">Neutrals</button>
+    <p></p>
+    
+    <button onclick="displayOlive('img');" style="background-color:rgb(205, 184, 255);">Olive</button>
+    <button onclick="displayOrange('img');" style="background-color:rgb(205, 184, 255);">Orange</button>
+    <button onclick="displayPastels('img');" style="background-color:rgb(205, 184, 255);">Pastels</button>
+    <p></p>
+   
+    <button onclick="displayPeach('img');" style="background-color:rgb(205, 184, 255);">Peach</button>
+    <button onclick="displayPink('img');" style="background-color:rgb(205, 184, 255);">Pink</button>
+    <button onclick="displayPurple('img');" style="background-color:rgb(205, 184, 255);">Purple</button>
+    <p></p>
+   
+    <button onclick="displayRed('img');" style="background-color:rgb(205, 184, 255);">Red</button>
+    <button onclick="displayWhite('img');" style="background-color:rgb(205, 184, 255);">White</button>
+    <button onclick="displayYellow('img');" style="background-color:rgb(205, 184, 255);">Yellow</button>
+    <p></p>
+
     <script>
       var hairResults = [""];
       var skinResults = [""];
-      // next = 0
-      // var commons = [""]
 
       document.getElementById("enter").addEventListener("click", passSkin);
       document.getElementById("enterTwo").addEventListener("click", passHair);
@@ -47,16 +119,8 @@
         hairResults = resultsTwo;
       }
 
-      function onSuccessThird(sameColours) {
-        var divThree = document.getElementById("foundCommon");
-        divThree.innerHTML = sameColours;
-        //makes the Find Common Colours button print the results 
-        commons = sameColours;
-      }
-
       function findCommon(){
-        google.script.run.withSuccessHandler(onSuccessThird)
-        //https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
+        //from https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
         const findDuplicates = (array) => {
           let sorted_arr = array.sort();
           var fixedArr = [];
@@ -73,8 +137,7 @@
         }
         const finalResults = hairResults.concat(skinResults);
         var divThree = document.getElementById("foundCommon");
-        divThree.innerHTML = `The common colours are: "${findDuplicates(finalResults)}"`;
-        console.log(`The common colours are: "${findDuplicates(finalResults)}"`);
+        divThree.innerHTML = `${findDuplicates(finalResults)}`;
       }
       
       function passSkin(){
@@ -89,6 +152,194 @@
         .userClickedAgain(hair); //calls the userClickedAgain function and passes it hair
       }
 
+      function displayAqua(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1xyGoJyIf8VLcX46Uowut-phTkswJv25k";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayBlack(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1tffoEkbmmMEFtR3Y6wXnFANbVyAXKgTi";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayBlue(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1sU_g-kd0U7LIgKwA9P2UkPJOUv2EYj0P";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayBrown(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1R25MqJKxqSCLZO5aPKUHd2911jZStf5X";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+      
+      function displayDarkBlue(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=17wrb-dooH6y18b7QwR36etJfvbwyC_og";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayDarkGreen(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=16oih4WQJtgmAhHD0FbUjsQMB92Hj0PO5";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayDarkPurple(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1TQ5bM8rhK6a7BzSbays-11BfI_u4A4bP";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayDarkRed(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1-TEkWZAY9OmKJCp2Czmv4EllEOhl-KJd";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayDarkYellow(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1yvzXP3USXHPhTY9mXYp2QsYIVhQPb9Se";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayGreen(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1N5unNbpuhgc7txVJEFCnn33iYUnzJyRD";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayGrey(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1JrBE2Y_bYgkJPUj889lVTgNUhOne7EVJ";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayNeutrals(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1WUL86UKjdv6jM4NeZO0oLzVZLBoRKPCR";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayOlive(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=121O_tsabml01GDV6dJ9tHDCBmIHXpayW";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayOrange(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1KZ3TS782SAZ26GXfWvO5VOWRRO1xH57k";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayPastels(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1Aug_BDrLZtBXbprvvtYLS7FC40ioNJGN";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayPeach(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1dmMhhecdWfQfvys0MuoAQMJAQYGB2H7g";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayPink(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=12Vma7dmjbJ9pcvDdD-AHhKmADz4_YcCD";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayPurple(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1uhlvrVCnOqIwCHOjumKWQbNdZG2jaKJ2";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayRed(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1Pq3RyzxvliYDS88anRRvrlnln64VFnXA";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayWhite(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=12HfsmxtT-a2_Ez0hboSF60l7C3GtFDl9";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
+
+      function displayYellow(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1mZgOurk0rDNzS3nYDqydBi0IPnewpjgW";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        document.body.appendChild(img);
+      }
     </script>
   </body>
 </html> 
