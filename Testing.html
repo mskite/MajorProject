@@ -3,19 +3,475 @@
   <head>
     <base target="_top">
   </head>
-  <body>
-    <button onclick="displayImage('timetable');">Show Image</button>
-    <!-- <img src="https://drive.google.com/uc?export=view&id=1IVZLpd4FQLCbGI7sTA9tNnszo6o22jzn" width="200px" height="auto" style="border:1px solid blue:" alt="testImage" > -->
-  </body>
-</html>
-
-<script>
-  function displayImage(src) {
-      var img = document.createElement("img");
-      img.src = "https://drive.google.com/uc?export=view&id=1IVZLpd4FQLCbGI7sTA9tNnszo6o22jzn";
-      img.height = 200;
-      document.body.appendChild(img);
+  <style> /* creates a place for CC styling */
+    .button {
+      background-color: #806DFF; /* Sets the background colour of the buttons to default as purple */
+      border: 1px solid black;
+      color: white;
+      padding: 10px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
     }
-  </script>
 
-<!-- https://www.youtube.com/watch?v=T16e52fy8nw&ab_channel=QuickProgrammingTips -->
+    .button:hover {background-color: #999999} /* Changes the button colour to grey when hovered over */
+    .button:active { /* creates a movement effect when the button is clicked */
+      background-color: #999999;
+      box-shadow: 0 2px #666;
+      transform: translateY(2px);
+    }
+    .buttonRed {background-color: #FF3535;} /* Specifies the background colour for different buttons */
+    .buttonOrange {background-color: #FF8100;}
+    .buttonDarkYellow {background-color: #DBA800;}
+    .buttonPeach {background-color: #F6B092; color: black;}
+    .buttonYellow {background-color: #FCDD00; color: black;}
+    .buttonPastels {background-color: #A9F3D5; color: black;}
+    .buttonGreen {background-color: #67E567; color: black;}
+    .buttonAqua {background-color: #03FDFC; color: black;}
+    .buttonBlue {background-color: #00B8FF; color: black;}
+    .buttonDarkBlue {background-color: #090088;}
+    .buttonDarkPurple {background-color: #610A72;}
+    .buttonPurple {background-color: #806DFF;}
+    .buttonPink {background-color: #F96BA5;}
+    .buttonDarkRed {background-color: #930000;}
+    .buttonBrown {background-color: #7C3F00;}
+    .buttonNeutrals {background-color: #ADA192; color: black;}
+    .buttonOlive {background-color: #6A760C;}
+    .buttonDarkGreen {background-color: #045107;}
+    .buttonBlack {background-color: #010203;}
+    .buttonGrey {background-color: #999999;}
+    .buttonWhite {background-color: #FFFFFF; color: black;}
+
+    h1 { /* Specifies the text type, size, and colour for the headings */
+      font-family: "Lucida Handwriting", cursive; 
+      font-size: 40px;
+      color: #806DFF;
+    }
+
+    p { /* Specifies the text type, size, and colour for the paragraph text */
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+    }
+
+    label { /* Specifies the text type, size, and colour for the labels for the drop downs */
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+    }
+
+    select { /* Specifies the text type, size, and colour for the options within the drop downs */
+      font-family: "Times New Roman", Times, serif;
+      font-size: 15px;
+    }
+
+  </style>
+  
+  <body>
+    <h1 class="h1">Dress Recommendations</h1> <!-- creates title -->
+    <label for="skinColours">Skin Tone: </label>
+    <select id="skinTone" name="skin"> <!-- creates drop-down menu -->
+      <option value="Warm Very Fair">Warm Very Fair</option>
+      <option value="Warm Fair">Warm Fair</option>
+      <option value="Warm Medium">Warm Medium</option>
+      <option value="Warm Dark">Warm Dark</option>
+      <option value="Warm Deep">Warm Deep</option>
+      <option value="Cool Very Fair">Cool Very Fair</option>
+      <option value="Cool Fair">Cool Fair</option>
+      <option value="Cool Medium">Cool Medium</option>
+      <option value="Cool Dark">Cool Dark</option>
+      <option value="Cool Deep">Cool Deep</option>
+      <option value="Neutral Very Fair">Neutral Very Fair</option>
+      <option value="Neutral Fair">Neutral Fair</option>
+      <option value="Neutral Medium">Neutral Medium</option>
+      <option value="Neutral Dark">Neutral Dark</option>
+      <option value="Neutral Deep">Neutral Deep</option>
+      <option value="Olive">Olive</option>
+    </select>
+    <button id="enter" class="button">Enter</button> 
+    <!-- creates button to enter skin tone -->
+    <p></p>
+   
+    <label for="hairColours">Hair Colour: </label>
+    <select id="hairTone" name="hair"> <!-- creates drop-down menu -->
+      <option value="Platinum Blonde">Platinum Blonde</option>
+      <option value="Warm Blonde">Warm Blonde</option>
+      <option value="Ash Blonde">Ash Blonde</option>
+      <option value="Dirty Blonde">Dirty Blonde</option>
+      <option value="Strawberry Blonde">Strawberry Blonde</option>
+      <option value="Copper">Copper</option>
+      <option value="Red Brown">Red Brown</option>
+      <option value="Honey Blonde">Honey Blonde</option>
+      <option value="Light Brown">Light Brown</option>
+      <option value="Dark Brown">Dark Brown</option>
+      <option value="Warm Brown">Warm Brown</option>
+      <option value="Cool Brown">Cool Brown</option>
+      <option value="Black">Black</option>
+      <option value="Grey">Grey</option>
+    </select>
+    
+    <button id="enterTwo" class="button">Enter</button> 
+    <!-- creates button to enter hair colour -->
+    
+    <p id ="results1">Recommended colours based off your skin tone will appear here!</p>
+    <p id ="results2">Recommended colours based off your hair colour will appear here!</p>
+    <!-- prints individual results based on spreadsheet data -->
+    <p></p>
+    <hr style="width:40%;text-align:left;margin-left:0;height:2px;border-width:0;color:#806DFF;background-color:#806DFF">
+    <!-- creates a horizontal line to break text up a bit -->
+    <p></p>
+    <button id="findCommonColours" class="button">Find Common Colours</button>
+    <p>Your recommended colours are: </p>
+    <p id="foundCommon"></p>
+    <!-- prints colours present in both results above -->
+    <p></p>
+    <hr style="width:40%;text-align:left;margin-left:0;height:2px;border-width:0;color:#806DFF;background-color:#806DFF">
+    <p></p>
+    <button onclick="displayBlue('img'); displayBrown('img'); displayGrey('img');" class="button">Show Palettes</button>
+    <p>Scroll down to view your recommended palettes and some information on them!</p>
+    <!-- prints the common palettes and blurbs --> 
+    
+    <h1 class="h1">Colour Palettes</h2>
+    <p>Click on any of these buttons to show their own palettes!</p>
+    
+    <!-- creates buttons that display their corresponding palette below --> 
+    <button onclick="displayRed('img');" class="button buttonRed">Red</button>
+    <button onclick="displayOrange('img');" class="button buttonOrange">Orange</button>
+    <button onclick="displayDarkYellow('img');" class="button buttonDarkYellow">Dark Yellow</button>
+    <p></p>
+
+    <button onclick="displayPeach('img');" class="button buttonPeach">Peach</button>
+    <button onclick="displayYellow('img');" class="button buttonYellow">Yellow</button>
+    <button onclick="displayPastels('img');" class="button buttonPastels">Pastels</button>
+    <p></p>
+
+    <button onclick="displayGreen('img');" class="button buttonGreen">Green</button>
+    <button onclick="displayAqua('img');" class="button buttonAqua">Aqua</button>
+    <button onclick="displayBlue('img');" class="button buttonBlue">Blue</button>
+    <p></p>
+
+    <button onclick="displayDarkBlue('img');" class="button buttonDarkBlue">Dark Blue</button>
+    <button onclick="displayDarkPurple('img');" class="button buttonDarkPurple">Dark Purple</button>
+    <button onclick="displayPurple('img');" class="button buttonPurple">Purple</button>
+    <p></p>
+
+    <button onclick="displayPink('img');" class="button buttonPink">Pink</button>
+    <button onclick="displayDarkRed('img');" class="button buttonDarkRed">Dark Red</button>
+    <button onclick="displayBrown('img');" class="button buttonBrown">Brown</button>
+    <p></p>
+
+    <button onclick="displayNeutrals('img');" class="button buttonNeutrals">Neutrals</button>
+    <button onclick="displayOlive('img');" class="button buttonOlive">Olive</button>
+    <button onclick="displayDarkGreen('img');" class="button buttonDarkGreen">Dark Green</button>
+    <p></p>
+
+    <button onclick="displayBlack('img');" class="button buttonBlack">Black</button>
+    <button onclick="displayGrey('img');" class="button buttonGrey">Grey</button>
+    <button onclick="displayWhite('img');" class="button buttonWhite">White</button>
+    <p></p>
+
+    <!-- prints the blurbs for each colour palette when their respective button is pressed -->
+    <p id="blurbRed"></p><p id="blurbOrange"></p><p id="blurbDarkYellow"></p><p id="blurbPeach"></p><p id="blurbYellow"></p><p id="blurbPastels"></p><p id="blurbGreen"></p><p id="blurbAqua"></p><p id="blurbBlue"></p><p id="blurbDarkBlue"></p><p id="blurbDarkPurple"></p><p id="blurbPurple"></p><p id="blurbPink"></p><p id="blurbDarkRed"></p><p id="blurbBrown"></p><p id="blurbNeutrals"></p><p id="blurbOlive"></p><p id="blurbDarkGreen"></p><p id="blurbBlack"></p><p id="blurbGrey"></p><p id="blurbWhite"></p>
+
+    <script>
+      var hairResults = [""];
+      var skinResults = [""];
+
+      document.getElementById("enter").addEventListener("click", passSkin);
+      document.getElementById("enterTwo").addEventListener("click", passHair);
+      document.getElementById("findCommonColours").addEventListener("click", findCommon);
+      //calls the corresponding functions when the buttons are pressed
+      
+      function onSuccess(results) {
+        var div = document.getElementById("results1");
+        div.innerHTML = results;
+        //makes the first enter button print the results 
+        skinResults = results;
+      }
+      
+      function onSuccessAgain(resultsTwo) {
+        var divTwo = document.getElementById("results2");
+        divTwo.innerHTML = resultsTwo;
+        //makes the second enter button print the results 
+        hairResults = resultsTwo;
+      }
+
+      function findCommon(){
+        //from https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
+        //loops through an array to find items that appear more than onces
+        const findDuplicates = (array) => {
+          let sorted_arr = array.sort();
+          var fixedArr = [];
+          for (let i = 0; i < sorted_arr.length; i++) {
+            fixedArr.push(sorted_arr[i][0]);
+          }
+          let commons = [];
+          for (let j = 0; j < fixedArr.length - 1; j++) {
+            if (fixedArr[j + 1] == fixedArr[j]) {
+              commons.push(fixedArr[j]); //appends the duplicate item to a new array
+            }
+          }
+          return commons;
+        }
+
+        const finalResults = hairResults.concat(skinResults);
+        var divThree = document.getElementById("foundCommon");
+
+        divThree.innerHTML = `${findDuplicates(finalResults)}`; //prints the new array made up of duplicates only
+      }
+      
+      function passSkin(){
+        var skin = document.getElementById("skinTone").value;
+        google.script.run.withSuccessHandler(onSuccess)
+        .userClicked(skin); //calls the userClicked function and passes it skin
+      }
+
+      function passHair(){
+        var hair = document.getElementById("hairTone").value;
+        google.script.run.withSuccessHandler(onSuccessAgain)
+        .userClickedAgain(hair); //calls the userClickedAgain function and passes it hair
+      }
+      
+
+
+
+
+
+
+      //functions that set the images' links, alternative texts, and blurbs, as well as specifying their appearance
+      //there is nothing else below these btw
+      function displayAqua(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1TYwAZJdwg6tIGWEeQMQdiYOUNA4frv42";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "An aqua colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbAqua").innerHTML = "A colour palette from bright aqua to dark teal"
+      }
+
+      function displayBlack(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1tffoEkbmmMEFtR3Y6wXnFANbVyAXKgTi";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A black colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbBlack").innerHTML = "A colour palette from dark grey to black"
+      }
+
+      function displayBlue(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1sU_g-kd0U7LIgKwA9P2UkPJOUv2EYj0P";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A blue colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbBlue").innerHTML = "A colour palette from light blue to a muted dark blue"
+      }
+
+      function displayBrown(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1R25MqJKxqSCLZO5aPKUHd2911jZStf5X";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A brown colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbBrown").innerHTML = "A warm brown colour palette from light to dark"
+      }
+      
+      function displayDarkBlue(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1N7lCn0XgS3SDMuM4uLq7bgQQFKe0ZAdq";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark blue colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkBlue").innerHTML = "A colour palette from sapphire blue to navy"
+      }
+
+      function displayDarkGreen(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=16oih4WQJtgmAhHD0FbUjsQMB92Hj0PO5";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark green colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkGreen").innerHTML = "A colour palette from forest green to almost black"
+      }
+
+      function displayDarkPurple(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1TQ5bM8rhK6a7BzSbays-11BfI_u4A4bP";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark purple colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkPurple").innerHTML = "A colour palette from warm muted dark purple to almost black"
+      }
+
+      function displayDarkRed(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1-TEkWZAY9OmKJCp2Czmv4EllEOhl-KJd";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark red colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkRed").innerHTML = "A colour palette from maroon to almost black"
+      }
+
+      function displayDarkYellow(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1yvzXP3USXHPhTY9mXYp2QsYIVhQPb9Se";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark yellow colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkYellow").innerHTML = "A colour palette from pale mustard to dark mustard"
+      }
+
+      function displayGreen(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1N5unNbpuhgc7txVJEFCnn33iYUnzJyRD";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A green colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbGreen").innerHTML = "A colour palette from pastel green, to bright green, to dark green"
+      }
+
+      function displayGrey(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1JrBE2Y_bYgkJPUj889lVTgNUhOne7EVJ";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A grey colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbGrey").innerHTML = "A colour palette from pale grey to black"
+      }
+
+      function displayNeutrals(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1WUL86UKjdv6jM4NeZO0oLzVZLBoRKPCR";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A neutral colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbNeutrals").innerHTML = "A colour palette from black to very pale beige"
+      }
+
+      function displayOlive(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=121O_tsabml01GDV6dJ9tHDCBmIHXpayW";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "An olive colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbOlive").innerHTML = "A colour palette from bright olive, to muted olive, to dark green"
+      }
+
+      function displayOrange(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1KZ3TS782SAZ26GXfWvO5VOWRRO1xH57k";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "An orange colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbOrange").innerHTML = "A colour palette from dark orange to pale peach"
+      }
+
+      function displayPastels(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1Aug_BDrLZtBXbprvvtYLS7FC40ioNJGN";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A pastel colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPastels").innerHTML = "A colour palette with pastel pink, yellow, green, blue, and purple"
+      }
+
+      function displayPeach(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1dmMhhecdWfQfvys0MuoAQMJAQYGB2H7g";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A peach colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPeach").innerHTML = "A colour palette from peach (pink-orange) to yellow"
+      }
+
+      function displayPink(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=12Vma7dmjbJ9pcvDdD-AHhKmADz4_YcCD";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A pink colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPink").innerHTML = "A colour palette from hot pink to pale pink"
+      }
+
+      function displayPurple(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1uhlvrVCnOqIwCHOjumKWQbNdZG2jaKJ2";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A purple colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPurple").innerHTML = "A colour palette from warm pale purple to darker warm purple"
+      }
+
+      function displayRed(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1Pq3RyzxvliYDS88anRRvrlnln64VFnXA";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A red colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbRed").innerHTML = "A colour palette from pastel red to dark red"
+      }
+
+      function displayWhite(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=12HfsmxtT-a2_Ez0hboSF60l7C3GtFDl9";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A white colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbWhite").innerHTML = "A colour palette from white to pale grey"
+      }
+
+      function displayYellow(src) {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1mZgOurk0rDNzS3nYDqydBi0IPnewpjgW";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A yellow colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbYellow").innerHTML = "A colour palette from pale yellow to dark yellow"
+      }
+
+    </script>
+  </body>
+</html> 

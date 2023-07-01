@@ -1,5 +1,5 @@
 function doGet(e) {
-  Logger.log(e.parameter);
+  Logger.log(e);
   return HtmlService.createHtmlOutputFromFile("UI"); 
   //creates the HTML file's output
 }
@@ -33,10 +33,35 @@ function getSS() {
   //get the info from these cells
   var range = sheet.getRange("A1:D106");
   var values = range.getValues();
-  console.log(values);
 };
 
+function getPalettes(commonColour) {
+  commonColour = "Yellow";//hardcoded for now
+  
+  //loop through each colour, find it in the spreadsheet and retrieve 
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName("Palettes");
+  var filter = sheet.getFilter();
+  filter.remove();
 
+  sheet.getRange('A1:E22').createFilter();
+  sheet.getRange('A1').activate();
+  var filter = sheet.getFilter();
+  var criteria = SpreadsheetApp.newFilterCriteria().whenTextEqualTo(commonColour).build();
+  var results = filter.setColumnFilterCriteria(1, criteria);
+  
+  for (let i = 1; i < 22; i++) {
+    if (sheet.isRowHiddenByFilter(i) == false && i > 1) {
+      console.log(sheet.getRange("A"+i).getValue());
+      var driveLink = sheet.getRange("B"+i).getValue();
+      var alt = sheet.getRange("C"+i).getValue();
+      var blurb = sheet.getRange("D"+i).getValue();
+    }
+  }
+  var paletteResults = [driveLink, alt, blurb]
+  console.log(paletteResults);
+  return paletteResults;
+}
 
 
 

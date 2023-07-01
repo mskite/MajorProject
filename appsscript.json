@@ -15,6 +15,9 @@
     }, {
       "menuName": "Choose Skin Tone",
       "functionName": "ChooseSkinTone"
+    }, {
+      "menuName": "findColourPalettes",
+      "functionName": "findColourPalettes"
     }]
   }
 }
