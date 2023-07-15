@@ -3,7 +3,7 @@
   <head>
     <base target="_top">
   </head>
-  <style> /* creates a place for CC styling */
+  <style> /* creates a place for CSS styling */
     .button {
       background-color: #806DFF; /* Sets the background colour of the buttons to default as purple */
       border: 1px solid black;
@@ -134,7 +134,7 @@
     <p></p>
     <hr style="width:40%;text-align:left;margin-left:0;height:2px;border-width:0;color:#806DFF;background-color:#806DFF">
     <p></p>
-    <button onclick="displayBlue('img'); displayBrown('img'); displayGrey('img');" class="button">Show Palettes</button>
+    <button onclick="displayBlue('img'); displayGreen('img'); displayGrey('img'); displayPastels('img'); displayWhite('img'); displayYellow('img');" class="button">Show Palettes</button>
     <p>Scroll down to view your recommended palettes and some information on them!</p>
     <!-- prints the common palettes and blurbs --> 
     <hr style="width:40%;text-align:left;margin-left:0;height:2px;border-width:0;color:#806DFF;background-color:#806DFF">
@@ -192,16 +192,28 @@
       
       function onSuccess(results) {
         var div = document.getElementById("results1");
-        div.innerHTML = results;
+        let resultsFixed = []
+        for (let i = 0; i < results.length; i++) {
+          if (results[i] != "") {
+            resultsFixed.push(results[i]);
+          }
+        }
+        div.innerHTML = resultsFixed;
         //makes the first enter button print the results 
-        skinResults = results;
+        skinResults = resultsFixed;
       }
       
       function onSuccessAgain(resultsTwo) {
         var divTwo = document.getElementById("results2");
-        divTwo.innerHTML = resultsTwo;
+        let resultsTwoFixed = []
+        for (let i = 0; i < resultsTwo.length; i++) {
+          if (resultsTwo[i] != "") {
+            resultsTwoFixed.push(resultsTwo[i]);
+          }
+        }
+        divTwo.innerHTML = resultsTwoFixed;
         //makes the second enter button print the results 
-        hairResults = resultsTwo;
+        hairResults = resultsTwoFixed;
       }
 
       function findCommon(){
@@ -215,16 +227,14 @@
           }
           let commons = [];
           for (let j = 0; j < fixedArr.length - 1; j++) {
-            if (fixedArr[j + 1] == fixedArr[j]) {
+            if (fixedArr[j + 1] == fixedArr[j] && fixedArr[j] != "") {
               commons.push(fixedArr[j]); //appends the duplicate item to a new array
             }
           }
           return commons;
         }
-
         const finalResults = hairResults.concat(skinResults);
         var divThree = document.getElementById("foundCommon");
-
         divThree.innerHTML = `${findDuplicates(finalResults)}`; //prints the new array made up of duplicates only
       }
       
@@ -239,6 +249,7 @@
         google.script.run.withSuccessHandler(onSuccessAgain)
         .userClickedAgain(hair); //calls the userClickedAgain function and passes it hair
       }
+
       
 
 
@@ -247,7 +258,7 @@
 
 
       //functions that set the images' links, alternative texts, and blurbs, as well as specifying their appearance
-      //there is nothing else below these btw
+      //there is nothing else below these
       function displayAqua(src) {
         var img = document.createElement("img");
         img.src = "https://drive.google.com/uc?export=view&id=1TYwAZJdwg6tIGWEeQMQdiYOUNA4frv42";
