@@ -21,7 +21,7 @@
     .button:active { /* creates a movement effect when the button is clicked */
       background-color: #999999;
       box-shadow: 0 2px #666;
-      transform: translateY(2px);
+      transform: translateY(1px);
     }
     .buttonRed {background-color: #FF3535;} /* Specifies the background colour for different buttons */
     .buttonOrange {background-color: #FF8100;}
@@ -44,6 +44,7 @@
     .buttonBlack {background-color: #010203;}
     .buttonGrey {background-color: #999999;}
     .buttonWhite {background-color: #FFFFFF; color: black;}
+    .onlineHelp {background-colour: #806DFF; border-radius: 100%; border-width: 1px}
 
     h1 { /* Specifies the text type, size, and colour for the headings */
       font-family: "Lucida Handwriting", cursive; 
@@ -76,6 +77,8 @@
   
   <body>
     <h1 class="h1">Gown Guide</h1> <!-- creates title -->
+    <p>Gown Guide is a website that recommends colours for you to wear based off your skin tone and hair colour! Simply select options from the drop down menus below and press the buttons. If you need help, hover over the question mark buttons!</p>
+    <p></p>
     <label for="skinColours">Skin Tone: </label>
     <select id="skinTone" name="skin"> <!-- creates drop-down menu -->
       <option value="Warm Very Fair">Warm Very Fair</option>
@@ -97,6 +100,10 @@
     </select>
     <button id="enter" class="button">Enter</button> 
     <!-- creates button to enter skin tone -->
+    
+    <button class="onlineHelp" title="Select a colour from the drop down menu to the left by pressing the arrow, then press the enter button! Do the same for hair colour!">?</button>
+    <!-- creates a hover-over effect to provide instruction to the user --> 
+    
     <p></p>
    
     <label for="hairColours">Hair Colour: </label>
@@ -128,6 +135,7 @@
     <!-- creates a horizontal line to break text up a bit -->
     <p></p>
     <button id="findCommonColours" class="button">Find Common Colours</button>
+    <button class="onlineHelp" title="Press the button to the left to find colours recommended for both your skin tone and hair colour! You need to press both enter buttons above for this to work">?</button>
     <p>Your recommended colours are: </p>
     <p id="foundCommon"></p>
     <!-- prints colours present in both results above -->
@@ -135,7 +143,8 @@
     <hr style="width:40%;text-align:left;margin-left:0;height:2px;border-width:0;color:#806DFF;background-color:#806DFF">
     <p></p>
     <button onclick="displayBlue('img'); displayGreen('img'); displayGrey('img'); displayPastels('img'); displayWhite('img'); displayYellow('img');" class="button">Show Palettes</button>
-    <p>Scroll down to view your recommended palettes and some information on them!</p>
+    <button class="onlineHelp" title="Press the button to the left to generate images of your recommended colours at the bottom of the page!">?</button>
+    <p>Scroll down to view your recommended palettes and some information!</p>
     <!-- prints the common palettes and blurbs --> 
     <hr style="width:40%;text-align:left;margin-left:0;height:2px;border-width:0;color:#806DFF;background-color:#806DFF">
 
@@ -180,6 +189,8 @@
 
     <!-- prints the blurbs for each colour palette when their respective button is pressed -->
     <p id="blurbRed"></p><p id="blurbOrange"></p><p id="blurbDarkYellow"></p><p id="blurbPeach"></p><p id="blurbYellow"></p><p id="blurbPastels"></p><p id="blurbGreen"></p><p id="blurbAqua"></p><p id="blurbBlue"></p><p id="blurbDarkBlue"></p><p id="blurbDarkPurple"></p><p id="blurbPurple"></p><p id="blurbPink"></p><p id="blurbDarkRed"></p><p id="blurbBrown"></p><p id="blurbNeutrals"></p><p id="blurbOlive"></p><p id="blurbDarkGreen"></p><p id="blurbBlack"></p><p id="blurbGrey"></p><p id="blurbWhite"></p>
+
+    <button onclick="driverHair;" class="button">Test</button>
 
     <script>
       var hairResults = [""];
@@ -251,6 +262,58 @@
       }
 
       
+      function driverHair() {
+        let hair = "ash blonde";
+        switch (hair) {
+          case "platinum blonde":
+            text = "Blue, grey, red, pastels, green, neutrals";
+            break;
+          case "warm blonde":
+            text = "Neutrals, yellow, orange, white";
+            break;
+          case "ash blonde":
+            console.log("Blue, Grey, Red, Green, Neutrals, Pink, Pastels");
+            break;
+          case "dirty blonde":
+            text = "DarkBlue, Grey, Red, Green, Neutrals, Pink, Pastels";
+            break;
+          case "strawbery blonde":
+            text = "Peach, Purple, Blue, Aqua, Yellow";
+            break;
+          case "copper":
+            text = "Brown, Grey, Green, DarkBlue, White, Orange";
+            break;
+          case "red brown":
+            text = "Brown, Grey, Green, DarkBlue, White, Orange";
+            break;
+          case "honey blonde":
+            text = "DarkGreen, DarkBlue, DarkPurple, DarkRed, Orange, Yellow";
+            break;
+          case "light brown":
+            text = "Olive, Grey, Neutrals, Brown, Blue, Pink, Purple";
+            break;
+          case "dark brown":
+            text = "Olive, Grey, Neutrals, Brown, Blue, Pink, Orange, Yellow, DarkGreen, DarkPurple";
+            break;
+          case "warm brown":
+            text = "Olive, Red, DarkPurple, Orange, Yellow, Pink";
+            break;
+          case "cool brown":
+            text = "Brown, Blue, DarkGrey, Purple, Neutrals, Olive";
+            break;
+          case "black":
+            text = "Blue, Grey, Green, White, Neutrals, Green, Pink, Yellow, Purple, Pastels";
+            break;
+          case "grey":
+            text = "Grey, DarkRed, Black, Pastels";
+            break;
+          default:
+            text = "No value found";
+        }
+      }
+
+
+
 
 
 
