@@ -79,6 +79,9 @@
     <h1 class="h1">Gown Guide</h1> <!-- creates title -->
     <p>Gown Guide is a website that recommends colours for you to wear based off your skin tone and hair colour! Simply select options from the drop down menus below and press the buttons. If you need help, hover over the question mark buttons!</p>
     <p></p>
+    <button id="driverButton" class="button">Drive!</button>
+    <p id="driverText">Driver</p>
+    <p></p>
     <label for="skinColours">Skin Tone: </label>
     <select id="skinTone" name="skin"> <!-- creates drop-down menu -->
       <option value="Warm Very Fair">Warm Very Fair</option>
@@ -190,8 +193,6 @@
     <!-- prints the blurbs for each colour palette when their respective button is pressed -->
     <p id="blurbRed"></p><p id="blurbOrange"></p><p id="blurbDarkYellow"></p><p id="blurbPeach"></p><p id="blurbYellow"></p><p id="blurbPastels"></p><p id="blurbGreen"></p><p id="blurbAqua"></p><p id="blurbBlue"></p><p id="blurbDarkBlue"></p><p id="blurbDarkPurple"></p><p id="blurbPurple"></p><p id="blurbPink"></p><p id="blurbDarkRed"></p><p id="blurbBrown"></p><p id="blurbNeutrals"></p><p id="blurbOlive"></p><p id="blurbDarkGreen"></p><p id="blurbBlack"></p><p id="blurbGrey"></p><p id="blurbWhite"></p>
 
-    <button onclick="driverHair;" class="button">Test</button>
-
     <script>
       var hairResults = [""];
       var skinResults = [""];
@@ -199,11 +200,12 @@
       document.getElementById("enter").addEventListener("click", passSkin);
       document.getElementById("enterTwo").addEventListener("click", passHair);
       document.getElementById("findCommonColours").addEventListener("click", findCommon);
+      document.getElementById("driverButton").addEventListener("click", driverCommons);
       //calls the corresponding functions when the buttons are pressed
       
       function onSuccess(results) {
         var div = document.getElementById("results1");
-        let resultsFixed = []
+        let resultsFixed= []
         for (let i = 0; i < results.length; i++) {
           if (results[i] != "") {
             resultsFixed.push(results[i]);
@@ -216,15 +218,15 @@
       
       function onSuccessAgain(resultsTwo) {
         var divTwo = document.getElementById("results2");
-        let resultsTwoFixed = []
+        let resultsFixedTwo = []
         for (let i = 0; i < resultsTwo.length; i++) {
           if (resultsTwo[i] != "") {
-            resultsTwoFixed.push(resultsTwo[i]);
+            resultsFixedTwo.push(resultsTwo[i]);
           }
         }
-        divTwo.innerHTML = resultsTwoFixed;
+        divTwo.innerHTML = resultsFixedTwo;
         //makes the second enter button print the results 
-        hairResults = resultsTwoFixed;
+        hairResults = resultsFixedTwo;
       }
 
       function findCommon(){
@@ -262,57 +264,325 @@
       }
 
       
-      function driverHair() {
-        let hair = "ash blonde";
-        switch (hair) {
-          case "platinum blonde":
-            text = "Blue, grey, red, pastels, green, neutrals";
-            break;
-          case "warm blonde":
-            text = "Neutrals, yellow, orange, white";
-            break;
-          case "ash blonde":
-            console.log("Blue, Grey, Red, Green, Neutrals, Pink, Pastels");
-            break;
-          case "dirty blonde":
-            text = "DarkBlue, Grey, Red, Green, Neutrals, Pink, Pastels";
-            break;
-          case "strawbery blonde":
-            text = "Peach, Purple, Blue, Aqua, Yellow";
-            break;
-          case "copper":
-            text = "Brown, Grey, Green, DarkBlue, White, Orange";
-            break;
-          case "red brown":
-            text = "Brown, Grey, Green, DarkBlue, White, Orange";
-            break;
-          case "honey blonde":
-            text = "DarkGreen, DarkBlue, DarkPurple, DarkRed, Orange, Yellow";
-            break;
-          case "light brown":
-            text = "Olive, Grey, Neutrals, Brown, Blue, Pink, Purple";
-            break;
-          case "dark brown":
-            text = "Olive, Grey, Neutrals, Brown, Blue, Pink, Orange, Yellow, DarkGreen, DarkPurple";
-            break;
-          case "warm brown":
-            text = "Olive, Red, DarkPurple, Orange, Yellow, Pink";
-            break;
-          case "cool brown":
-            text = "Brown, Blue, DarkGrey, Purple, Neutrals, Olive";
-            break;
-          case "black":
-            text = "Blue, Grey, Green, White, Neutrals, Green, Pink, Yellow, Purple, Pastels";
-            break;
-          case "grey":
-            text = "Grey, DarkRed, Black, Pastels";
-            break;
-          default:
-            text = "No value found";
+      function driverCommons() {
+        var hairDriver = "Grey";
+        var skinDriver = "Warm Medium";
+        
+        if (hairDriver == "Platinum Blonde" && skinDriver == "Warm Very Fair") {
+          driver = "Pastels,Neutrals";
+        } else if (hairDriver == "Warm Blonde" && skinDriver == "Warm Very Fair") {
+          driver = "Neutrals, White";
+        } else if (hairDriver == "Ash Blonde" && skinDriver == "Warm Very Fair") {
+          driver = "Neutrals, Pastels";
+        } else if (hairDriver == "Dirty Blonde" && skinDriver == "Warm Very Fair") {
+          driver = "DarkBlue, Neutrals, Pastels";
+        } else if (hairDriver == "Strawberry Blonde" && skinDriver == "Warm Very Fair") {
+          driver = "No results";
+        } else if (hairDriver == "Copper" && skinDriver == "Warm Very Fair") {
+          driver = "DarkBlue, White";
+        } else if (hairDriver == "Red Brown" && skinDriver == "Warm Very Fair") {
+          driver = "DarkBlue, White";
+        } else if (hairDriver == "Honey Blonde" && skinDriver == "Warm Very Fair") {
+          driver = "DarkGreen, DarkBlue, DarkPurple, DarkRed";
+        } else if (hairDriver == "Light Brown" && skinDriver == "Warm Very Fair") {
+          driver = "Neutrals";
+        } else if (hairDriver == "Dark Brown" && skinDriver == "Warm Very Fair") {
+          driver = "Neutrals, DarkGreen, DarkPurple";
+        } else if (hairDriver == "Warm Brown" && skinDriver == "Warm Very Fair") {
+          driver = "DarkPurple";
+        } else if (hairDriver == "Cool Brown" && skinDriver == "Warm Very Fair") {
+          driver = "Neutrals";
+        } else if (hairDriver == "Black" && skinDriver == "Warm Very Fair") {
+          driver = "White, Neutrals, Pastels";
+        } else if (hairDriver == "Grey" && skinDriver == "Warm Very Fair") {
+          driver = "DarkBlue, DarkRed, Pastels";
+        } else if (hairDriver == "Warm Blonde" && skinDriver== "Warm Very Fair") {
+          driver = "Neutrals, White";
+        } else if (hairDriver == "Ash Blonde" && skinDriver== "Warm Very Fair") {
+          driver = "Neutrals, Pastels";
+        } else if (hairDriver == "Dirty Blonde" && skinDriver== "Warm Very Fair") {
+          driver = "DarkBlue, Neutrals, Pastels";
+        } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Warm Very Fair") {
+          driver = "No results";
+        } else if (hairDriver == "Copper" && skinDriver== "Warm Very Fair") {
+          driver = "DarkBlue, White";
+        } else if (hairDriver == "Red Brown" && skinDriver== "Warm Very Fair") {
+          driver = "DarkBlue, White";
+        } else if (hairDriver == "Honey Blonde" && skinDriver== "Warm Very Fair") {
+          driver = "DarkGreen, DarkBlue, DarkPurple, DarkRed";
+        } else if (hairDriver == "Light Brown" && skinDriver== "Warm Very Fair") {
+          driver = "Neutrals";
+        } else if (hairDriver == "Dark Brown" && skinDriver== "Warm Very Fair") {
+          driver = "Neutrals, DarkGreen, DarkPurple";
+        } else if (hairDriver == "Warm Brown" && skinDriver== "Warm Very Fair") {
+          driver = "DarkPurple";
+        } else if (hairDriver == "Cool Brown" && skinDriver== "Warm Very Fair") {
+          driver = "Neutrals";
+        } else if (hairDriver == "Black" && skinDriver== "Warm Very Fair") {
+          driver = "White, Neutrals, Pastels";
+        } else if (hairDriver == "Grey" && skinDriver== "Warm Very Fair") {
+          driver = "DarkBlue, DarkRed, Pastels";
+
+        } else if (hairDriver == "Platinum Blonde" && skinDriver== "Warm Fair") {
+          driver = "Red, Pastels, Green";
+        } else if (hairDriver == "Warm Blonde" && skinDriver== "Warm Fair") {
+          driver = "Yellow, White";
+        } else if (hairDriver == "Ash Blonde" && skinDriver== "Warm Fair") {
+          driver = "Red, Green, Pastels";
+        } else if (hairDriver == "Dirty Blonde" && skinDriver== "Warm Fair") {
+          driver = "Red, Green, Pastels";
+        } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Warm Fair") {
+          driver = "Peach, Yellow";
+        } else if (hairDriver == "Copper" && skinDriver== "Warm Fair") {
+          driver = "Brown, Green, White";
+        } else if (hairDriver == "Red Brown" && skinDriver== "Warm Fair") {
+          driver = "Brown, Green, White";
+        } else if (hairDriver == "Honey Blonde" && skinDriver== "Warm Fair") {
+          driver = "Yellow";
+        } else if (hairDriver == "Light Brown" && skinDriver== "Warm Fair") {
+          driver = "Brown";
+        } else if (hairDriver == "Dark Brown" && skinDriver== "Warm Fair") {
+          driver = "Brown, Yellow";
+        } else if (hairDriver == "Warm Brown" && skinDriver== "Warm Fair") {
+          driver = "Red, Yellow";
+        } else if (hairDriver == "Cool Brown" && skinDriver== "Warm Fair") {
+          driver = "Brown";
+        } else if (hairDriver == "Black" && skinDriver== "Warm Fair") {
+          driver = "Green, White, Yellow, Pastels";
+        } else if (hairDriver == "Grey" && skinDriver== "Warm Fair") {
+          driver = "Pastels";
+
+        } else if (hairDriver == "Platinum Blonde" && skinDriver== "Warm Medium") {
+          driver = "No results";
+        } else if (hairDriver == "Warm Blonde" && skinDriver== "Warm Medium") {
+          driver = "White";
+        } else if (hairDriver == "Ash Blonde" && skinDriver== "Warm Medium") {
+          driver = "Pink";
+        } else if (hairDriver == "Dirty Blonde" && skinDriver== "Warm Medium") {
+          driver = "DarkBlue, Pink";
+        } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Warm Medium") {
+          driver = "Purple";
+        } else if (hairDriver == "Copper" && skinDriver== "Warm Medium") {
+          driver = "DarkBlue, White";
+        } else if (hairDriver == "Red Brown" && skinDriver== "Warm Medium") {
+          driver = "DarkBlue, White";
+        } else if (hairDriver == "Honey Blonde" && skinDriver== "Warm Medium") {
+          driver = "DarkGreen, DarkBlue, DarkRed";
+        } else if (hairDriver == "Light Brown" && skinDriver== "Warm Medium") {
+          driver = "Olive, Pink, Purple";
+        } else if (hairDriver == "Dark Brown" && skinDriver== "Warm Medium") {
+          driver = "Olive, Pink, DarkGreen";
+        } else if (hairDriver == "Warm Brown" && skinDriver== "Warm Medium") {
+          driver = "Olive, Pink";
+        } else if (hairDriver == "Cool Brown" && skinDriver== "Warm Medium") {
+          driver = "Purple, Olive";
+        } else if (hairDriver == "Black" && skinDriver== "Warm Medium") {
+          driver = "White, Pink";
+        } else if (hairDriver == "Grey" && skinDriver== "Warm Medium") {
+          driver = "DarkBlue, DarkRed";
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Black" && skinDriver== "Warm Dark") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Warm Dark") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Black" && skinDriver== "Warm Deep") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Warm Deep") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Black" && skinDriver== "Cool Very Fair") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Cool Very Fair") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Black" && skinDriver== "Cool Fair") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Cool Fair") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Black" && skinDriver== "Cool Medium") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Cool Medium") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Black" && skinDriver== "Cool Dark") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Cool Dark") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Black" && skinDriver== "Cool Deep") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Cool Deep") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Black" && skinDriver== "Neutral Very Fair") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Neutral Very Fair") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Black" && skinDriver== "Neutral Fair") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Neutral Fair") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Black" && skinDriver== "Neutral Medium") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Neutral Medium") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Black" && skinDriver== "Neutral Dark") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Neutral Dark") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Black" && skinDriver== "Neutral Deep") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Neutral Deep") {
+
+        // } else if (hairDriver == "Platinum Blonde" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Warm Blonde" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Ash Blonde" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Dirty Blonde" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Strawberry Blonde" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Copper" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Red Brown" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Honey Blonde" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Light Brown" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Dark Brown" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Warm Brown" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Cool Brown" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Black" && skinDriver== "Olive") {
+        // } else if (hairDriver == "Grey" && skinDriver== "Olive") {
+
+        } else {
+          driver = "broken";
         }
+        var divDriver = document.getElementById("driverText");
+        divDriver.innerHTML = driver;
       }
-
-
+        
 
 
 
