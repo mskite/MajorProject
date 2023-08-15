@@ -254,13 +254,13 @@
       function passSkin(){
         var skin = document.getElementById("skinTone").value;
         google.script.run.withSuccessHandler(onSuccess)
-        .userClicked(skin); //calls the userClicked function and passes it skin
+        .enterSkin(skin); //calls the enterSkin function and passes it skin
       }
 
       function passHair(){
         var hair = document.getElementById("hairTone").value;
         google.script.run.withSuccessHandler(onSuccessAgain)
-        .userClickedAgain(hair); //calls the userClickedAgain function and passes it hair
+        .enterHair(hair); //calls the enterHair function and passes it hair
       }
 
       
