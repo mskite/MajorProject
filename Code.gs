@@ -10,6 +10,7 @@ function enterSkin(skinColour) {
 
   var range = ws.getRange("I2").setFormula('=filter(D2:E106,E2:E106="' + skinColour + '")').activate(); 
   //edits filter in the active worksheet to sort for matches based on input 
+  //change range to 606 for volume data load testing
   range = ws.getRange("I2:I15").getValues();
   var coloursOne = range; //links the results of the filter to the coloursOne variable
   return coloursOne;
@@ -21,6 +22,7 @@ function enterHair(hairColour) {
   
   var range = ws.getRange("G2").setFormula('=filter(A2:A91,B2:B91="'+ hairColour +'")').activate();
   //edits filter in the active worksheet to sort for matches based on input
+  //change range to 591 for volume data load testing
   range = ws.getRange("G2:G15").getValues();
   var coloursTwo = range; //links the results of the filter to the coloursTwo variable
   return coloursTwo;
