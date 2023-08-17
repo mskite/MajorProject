@@ -77,10 +77,10 @@
   
   <body>
     <h1 class="h1">Gown Guide</h1> <!-- creates title -->
-    <p>Gown Guide is a website that recommends colours for you to wear based off your skin tone and hair colour! Simply select options from the drop down menus below and press the buttons. If you need help, hover over the question mark buttons!</p>
+    <p>Gown Guide is recommends colours for you to wear based off your skin tone and hair colour! Simply select options from the drop down menus below and press the buttons. If you need help, hover over the question mark buttons!</p>
     <p></p>
-    <button id="driverButton" class="button">Drive!</button>
-    <p id="driverText">Driver</p>
+    <button id="driverButton" class="button">Test</button>
+    <p id="driverText">Driver results will appear here</p>
     <p></p>
     <label for="skinColours">Skin Tone: </label>
     <select id="skinTone" name="skin"> <!-- creates drop-down menu -->
@@ -145,7 +145,7 @@
     <p></p>
     <hr style="width:40%;text-align:left;margin-left:0;height:2px;border-width:0;color:#806DFF;background-color:#806DFF">
     <p></p>
-    <button onclick="displayBlue('img'); displayGreen('img'); displayGrey('img'); displayPastels('img'); displayWhite('img'); displayYellow('img');" class="button">Show Palettes</button>
+    <button onclick="commonPalettes()"class="button">Show Palettes</button>
     <button class="onlineHelp" title="Press the button to the left to generate images of your recommended colours at the bottom of the page!">?</button>
     <p>Scroll down to view your recommended palettes and some information!</p>
     <!-- prints the common palettes and blurbs --> 
@@ -241,7 +241,7 @@
           let commons = [];
           for (let j = 0; j < fixedArr.length - 1; j++) {
             if (fixedArr[j + 1] == fixedArr[j] && fixedArr[j] != "") {
-              commons.push(fixedArr[j]); //appends the duplicate item to a new array
+              commons.push(" " + fixedArr[j]); //appends the duplicate item to a new array
             }
           }
           return commons;
@@ -255,21 +255,307 @@
         var skin = document.getElementById("skinTone").value;
         google.script.run.withSuccessHandler(onSuccess)
         .enterSkin(skin); //calls the enterSkin function and passes it skin
+        return skin;
       }
 
       function passHair(){
         var hair = document.getElementById("hairTone").value;
         google.script.run.withSuccessHandler(onSuccessAgain)
         .enterHair(hair); //calls the enterHair function and passes it hair
+        return hair;
       }
 
+      function commonPalettes() { 
+        var palettes = document.getElementById("foundCommon").innerHTML;
+        const palettesArray = palettes.split(",");
+        for (let i = 0; i < palettesArray.length; i++) {
+          if (palettesArray[i] == " Aqua" || palettesArray[i] == "Aqua")  {
+            displayAqua();
+          } else if (palettesArray[i] == " Black" || palettesArray[i] == "Black") {
+            displayBlack();
+          } else if (palettesArray[i] == " Brown" || palettesArray[i] == "Brown") {
+            displayBrown();
+          } else if (palettesArray[i] == " Blue" || palettesArray[i] == "Blue") {
+            displayBlue();
+          } else if (palettesArray[i] == " DarkBlue" || palettesArray[i] == "DarkBlue") {
+            displayDarkBlue();
+          } else if (palettesArray[i] == " DarkGreen" || palettesArray[i] == "DarkGreen") {
+            displayDarkGreen();
+          } else if (palettesArray[i] == " DarkPurple" || palettesArray[i] == "DarkPurple") {
+            displayDarkPurple();
+          } else if (palettesArray[i] == " DarkRed" || palettesArray[i] == "DarkRed") {
+            displayDarkRed();
+          } else if (palettesArray[i] == " DarkYellow" || palettesArray[i] == "DarkYellow") {
+            displayDarkYellow();
+          } else if (palettesArray[i] == " Green" || palettesArray[i] == "Green") {
+            displayGreen();
+          } else if (palettesArray[i] == " Grey" || palettesArray[i] == "Grey") {
+            displayGrey();
+          } else if (palettesArray[i] == " Neutrals" || palettesArray[i] == "Neutrals") {
+            displayNeutrals();
+          } else if (palettesArray[i] == " Olive" || palettesArray[i] == "Olive") {
+            displayOlive();
+          } else if (palettesArray[i] == " Orange" || palettesArray[i] == "Orange") {
+            displayOrange();
+          } else if (palettesArray[i] == " Pastels" || palettesArray[i] == "Pastels") {
+            displayPastels();
+          } else if (palettesArray[i] == " Peach" || palettesArray[i] == "Peach") {
+            displayPeach();
+          } else if (palettesArray[i] == " Pink" || palettesArray[i] == "Pink") {
+            displayPink();
+          } else if (palettesArray[i] == " Purple" || palettesArray[i] == "Purple") {
+            displayPurple();
+          } else if (palettesArray[i] == " Red" || palettesArray[i] == "Red") {
+            displayRed();
+          } else if (palettesArray[i] == " White" || palettesArray[i] == "White") {
+            displayWhite();
+          } else if (palettesArray[i] == " Yellow" || palettesArray[i] == "Yellow") {
+            displayYellow();
+          } else {
+            console.log("fail");
+          }
+        }
+      }
+
+      //functions that set the images' links, alternative texts, and blurbs, as well as specifying their appearance
+      function displayAqua() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1TYwAZJdwg6tIGWEeQMQdiYOUNA4frv42";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "An aqua colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbAqua").innerHTML = "A colour palette from bright aqua to dark teal"
+      }
+
+      function displayBlack() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1tffoEkbmmMEFtR3Y6wXnFANbVyAXKgTi";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A black colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbBlack").innerHTML = "A colour palette from dark grey to black"
+      }
+
+      function displayBlue() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1sU_g-kd0U7LIgKwA9P2UkPJOUv2EYj0P";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A blue colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbBlue").innerHTML = "A colour palette from light blue to a muted dark blue"
+      }
+
+      function displayBrown() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1R25MqJKxqSCLZO5aPKUHd2911jZStf5X";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A brown colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbBrown").innerHTML = "A warm brown colour palette from light to dark"
+      }
       
+      function displayDarkBlue() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1N7lCn0XgS3SDMuM4uLq7bgQQFKe0ZAdq";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark blue colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkBlue").innerHTML = "A colour palette from sapphire blue to navy"
+      }
+
+      function displayDarkGreen() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=16oih4WQJtgmAhHD0FbUjsQMB92Hj0PO5";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark green colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkGreen").innerHTML = "A colour palette from forest green to almost black"
+      }
+
+      function displayDarkPurple() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1TQ5bM8rhK6a7BzSbays-11BfI_u4A4bP";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark purple colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkPurple").innerHTML = "A colour palette from warm muted dark purple to almost black"
+      }
+
+      function displayDarkRed() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1-TEkWZAY9OmKJCp2Czmv4EllEOhl-KJd";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark red colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkRed").innerHTML = "A colour palette from maroon to almost black"
+      }
+
+      function displayDarkYellow() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1yvzXP3USXHPhTY9mXYp2QsYIVhQPb9Se";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A dark yellow colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbDarkYellow").innerHTML = "A colour palette from pale mustard to dark mustard"
+      }
+
+      function displayGreen() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1N5unNbpuhgc7txVJEFCnn33iYUnzJyRD";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A green colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbGreen").innerHTML = "A colour palette from pastel green, to bright green, to dark green"
+      }
+
+      function displayGrey() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1JrBE2Y_bYgkJPUj889lVTgNUhOne7EVJ";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A grey colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbGrey").innerHTML = "A colour palette from pale grey to black"
+      }
+
+      function displayNeutrals() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1WUL86UKjdv6jM4NeZO0oLzVZLBoRKPCR";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A neutral colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbNeutrals").innerHTML = "A colour palette from black to very pale beige"
+      }
+
+      function displayOlive() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=121O_tsabml01GDV6dJ9tHDCBmIHXpayW";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "An olive colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbOlive").innerHTML = "A colour palette from bright olive, to muted olive, to dark green"
+      }
+
+      function displayOrange() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1KZ3TS782SAZ26GXfWvO5VOWRRO1xH57k";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "An orange colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbOrange").innerHTML = "A colour palette from dark orange to pale peach"
+      }
+
+      function displayPastels() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1Aug_BDrLZtBXbprvvtYLS7FC40ioNJGN";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A pastel colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPastels").innerHTML = "A colour palette with pastel pink, yellow, green, blue, and purple"
+      }
+
+      function displayPeach() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1dmMhhecdWfQfvys0MuoAQMJAQYGB2H7g";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A peach colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPeach").innerHTML = "A colour palette from peach (pink-orange) to yellow"
+      }
+
+      function displayPink() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=12Vma7dmjbJ9pcvDdD-AHhKmADz4_YcCD";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A pink colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPink").innerHTML = "A colour palette from hot pink to pale pink"
+      }
+
+      function displayPurple() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1uhlvrVCnOqIwCHOjumKWQbNdZG2jaKJ2";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A purple colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbPurple").innerHTML = "A colour palette from warm pale purple to darker warm purple"
+      }
+
+      function displayRed() {
+
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1Pq3RyzxvliYDS88anRRvrlnln64VFnXA";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A red colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbRed").innerHTML = "A colour palette from pastel red to dark red"
+      }
+
+      function displayWhite() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=12HfsmxtT-a2_Ez0hboSF60l7C3GtFDl9";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A white colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbWhite").innerHTML = "A colour palette from white to pale grey"
+      }
+
+      function displayYellow() {
+        var img = document.createElement("img");
+        img.src = "https://drive.google.com/uc?export=view&id=1mZgOurk0rDNzS3nYDqydBi0IPnewpjgW";
+        img.height = 150;
+        img.width = 250;
+        img.style.border = "5px solid white";
+        img.alt = "A yellow colour palette"
+        document.body.appendChild(img);
+        document.getElementById("blurbYellow").innerHTML = "A colour palette from pale yellow to dark yellow"
+      }
+
+      //there is nothing below this
       function driverCommons() {
-        //hard coded for now: set these vars to the colours being tested
-        var hairDriver = "Grey";
-        var skinDriver = "Warm Medium";
+        var hairDriver = document.getElementById("hairTone").value;
+        var skinDriver = document.getElementById("skinTone").value;
         
-        //colour set for Warm Very Fair
+        //colour set for skinTone = Warm Very Fair
         if (hairDriver == "Platinum Blonde" && skinDriver == "Warm Very Fair") {
           driver = "Pastels,Neutrals";
         } else if (hairDriver == "Warm Blonde" && skinDriver == "Warm Very Fair") {
@@ -325,7 +611,7 @@
         } else if (hairDriver == "Grey" && skinDriver== "Warm Very Fair") {
           driver = "DarkBlue, DarkRed, Pastels";
 
-        //colour set for Warm Fair
+        //colour set for skinTone = Warm Fair
         } else if (hairDriver == "Platinum Blonde" && skinDriver== "Warm Fair") {
           driver = "Red, Pastels, Green";
         } else if (hairDriver == "Warm Blonde" && skinDriver== "Warm Fair") {
@@ -768,239 +1054,6 @@
         divDriver.innerHTML = driver;
       }
         
-
-      //functions that set the images' links, alternative texts, and blurbs, as well as specifying their appearance
-      function displayAqua(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1TYwAZJdwg6tIGWEeQMQdiYOUNA4frv42";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "An aqua colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbAqua").innerHTML = "A colour palette from bright aqua to dark teal"
-      }
-
-      function displayBlack(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1tffoEkbmmMEFtR3Y6wXnFANbVyAXKgTi";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A black colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbBlack").innerHTML = "A colour palette from dark grey to black"
-      }
-
-      function displayBlue(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1sU_g-kd0U7LIgKwA9P2UkPJOUv2EYj0P";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A blue colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbBlue").innerHTML = "A colour palette from light blue to a muted dark blue"
-      }
-
-      function displayBrown(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1R25MqJKxqSCLZO5aPKUHd2911jZStf5X";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A brown colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbBrown").innerHTML = "A warm brown colour palette from light to dark"
-      }
-      
-      function displayDarkBlue(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1N7lCn0XgS3SDMuM4uLq7bgQQFKe0ZAdq";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A dark blue colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbDarkBlue").innerHTML = "A colour palette from sapphire blue to navy"
-      }
-
-      function displayDarkGreen(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=16oih4WQJtgmAhHD0FbUjsQMB92Hj0PO5";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A dark green colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbDarkGreen").innerHTML = "A colour palette from forest green to almost black"
-      }
-
-      function displayDarkPurple(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1TQ5bM8rhK6a7BzSbays-11BfI_u4A4bP";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A dark purple colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbDarkPurple").innerHTML = "A colour palette from warm muted dark purple to almost black"
-      }
-
-      function displayDarkRed(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1-TEkWZAY9OmKJCp2Czmv4EllEOhl-KJd";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A dark red colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbDarkRed").innerHTML = "A colour palette from maroon to almost black"
-      }
-
-      function displayDarkYellow(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1yvzXP3USXHPhTY9mXYp2QsYIVhQPb9Se";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A dark yellow colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbDarkYellow").innerHTML = "A colour palette from pale mustard to dark mustard"
-      }
-
-      function displayGreen(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1N5unNbpuhgc7txVJEFCnn33iYUnzJyRD";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A green colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbGreen").innerHTML = "A colour palette from pastel green, to bright green, to dark green"
-      }
-
-      function displayGrey(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1JrBE2Y_bYgkJPUj889lVTgNUhOne7EVJ";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A grey colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbGrey").innerHTML = "A colour palette from pale grey to black"
-      }
-
-      function displayNeutrals(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1WUL86UKjdv6jM4NeZO0oLzVZLBoRKPCR";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A neutral colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbNeutrals").innerHTML = "A colour palette from black to very pale beige"
-      }
-
-      function displayOlive(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=121O_tsabml01GDV6dJ9tHDCBmIHXpayW";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "An olive colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbOlive").innerHTML = "A colour palette from bright olive, to muted olive, to dark green"
-      }
-
-      function displayOrange(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1KZ3TS782SAZ26GXfWvO5VOWRRO1xH57k";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "An orange colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbOrange").innerHTML = "A colour palette from dark orange to pale peach"
-      }
-
-      function displayPastels(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1Aug_BDrLZtBXbprvvtYLS7FC40ioNJGN";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A pastel colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbPastels").innerHTML = "A colour palette with pastel pink, yellow, green, blue, and purple"
-      }
-
-      function displayPeach(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1dmMhhecdWfQfvys0MuoAQMJAQYGB2H7g";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A peach colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbPeach").innerHTML = "A colour palette from peach (pink-orange) to yellow"
-      }
-
-      function displayPink(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=12Vma7dmjbJ9pcvDdD-AHhKmADz4_YcCD";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A pink colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbPink").innerHTML = "A colour palette from hot pink to pale pink"
-      }
-
-      function displayPurple(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1uhlvrVCnOqIwCHOjumKWQbNdZG2jaKJ2";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A purple colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbPurple").innerHTML = "A colour palette from warm pale purple to darker warm purple"
-      }
-
-      function displayRed(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1Pq3RyzxvliYDS88anRRvrlnln64VFnXA";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A red colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbRed").innerHTML = "A colour palette from pastel red to dark red"
-      }
-
-      function displayWhite(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=12HfsmxtT-a2_Ez0hboSF60l7C3GtFDl9";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A white colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbWhite").innerHTML = "A colour palette from white to pale grey"
-      }
-
-      function displayYellow(src) {
-        var img = document.createElement("img");
-        img.src = "https://drive.google.com/uc?export=view&id=1mZgOurk0rDNzS3nYDqydBi0IPnewpjgW";
-        img.height = 150;
-        img.width = 250;
-        img.style.border = "5px solid white";
-        img.alt = "A yellow colour palette"
-        document.body.appendChild(img);
-        document.getElementById("blurbYellow").innerHTML = "A colour palette from pale yellow to dark yellow"
-      }
-
     </script>
   </body>
 </html> 
